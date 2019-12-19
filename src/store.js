@@ -39,6 +39,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    FETCH_THE_SCENE(state) {
+      return state.scene
+    },
     SET_VIEWPORT_SIZE(state, { width, height }) {
       state.width = width;
       state.height = height;
@@ -102,7 +105,7 @@ export default new Vuex.Store({
       var pGeometry = new PlaneGeometry( 10000, 10000, 10000 );
       var plane = new Mesh( pGeometry, material );
       plane.rotation.x = - Math.PI / 2
-      self.plane = plane;
+      state.plane = plane;
 
       state.scene.add(plane);
       state.scene.add(...state.pyramids);
