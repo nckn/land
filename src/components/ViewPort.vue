@@ -4,7 +4,7 @@
 
 <script>
 
-import { mapMutations, mapActions } from "vuex";
+import { mapMutations, mapActions, mapGetters, mapState } from "vuex";
 import { 
   MeshPhongMaterial,
   Mesh,
@@ -22,6 +22,10 @@ export default {
   components: {
     // PlaneGeometry
   },
+  computed: {
+    ...mapGetters(["CAMERA_POSITION"]),
+    ...mapState(['camera'])
+  },
   methods: {
     ...mapMutations(["RESIZE"]),
     ...mapActions(["INIT", "ANIMATE"]),
@@ -35,11 +39,16 @@ export default {
       var plane = new Mesh( pGeometry, material );
       // plane.rotation.x = - Math.PI / 2
       self.plane = plane;
-      self.scene.add(plane);
-      setTimeout(() => {
-        // alert(self.scene)
+      // self.scene.add(plane);
+      // setTimeout(() => {
+      //   // alert(self.scene)
 
-      }, 2000)
+      // }, 2000)
+    }
+  },
+  watch: {
+    camera () {
+      // console.log(`The cam pos: $(CAMERA_POSITION.x)`)
     }
   },
   mounted() {

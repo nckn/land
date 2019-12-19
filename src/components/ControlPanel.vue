@@ -98,7 +98,7 @@ export default {
       "SHOW_PYRAMIDS"
     ]),
     resetCameraPosition() {
-      this.SET_CAMERA_POSITION({ x: 0, y: 0, z: 500 });
+      this.SET_CAMERA_POSITION({ x: 30, y: 200, z: 200 });
       this.RESET_CAMERA_ROTATION();
     },
     toggleAxisLines() {

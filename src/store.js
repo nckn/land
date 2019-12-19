@@ -64,7 +64,8 @@ export default new Vuex.Store({
         // 4. Far clipping plane
         1000
       );
-      state.camera.position.z = 500;
+      // state.camera.position.z = 500;
+      state.camera.position.set(30, 120, 350)
     },
     INITIALIZE_CONTROLS(state) {
       state.controls = new TrackballControls(
