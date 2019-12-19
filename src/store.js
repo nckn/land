@@ -52,8 +52,8 @@ export default new Vuex.Store({
     },
     INITIALIZE_CAMERA(state) {
       state.camera = new PerspectiveCamera(
-        // 1. Field of View (degrees)
-        60,
+        // 1. Field of View (degrees) org 60
+        20,
         // 2. Aspect ratio
         state.width / state.height,
         // 3. Near clipping plane
