@@ -134,6 +134,7 @@ export default {
   z-index: 11;
   background: #e5e5e5;
   padding: 16px;
+  display: none;
 }
 
 @media screen and (max-width: 768px) {

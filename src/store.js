@@ -15,7 +15,8 @@ import {
   LineBasicMaterial,
   Geometry,
   Vector3,
-  Line
+  Line,
+  PlaneGeometry
 } from "three-full";
 
 Vue.use(Vuex);
@@ -29,7 +30,8 @@ export default new Vuex.Store({
     scene: null,
     renderer: null,
     axisLines: [],
-    pyramids: []
+    pyramids: [],
+    plane: null
   },
   getters: {
     CAMERA_POSITION: state => {
@@ -45,6 +47,7 @@ export default new Vuex.Store({
       state.renderer = new WebGLRenderer({ antialias: true });
       state.renderer.setPixelRatio(window.devicePixelRatio);
       state.renderer.setSize(state.width, state.height);
+      state.renderer.setClearColor(0x2a363b, 1);
       el.appendChild(state.renderer.domElement);
     },
     INITIALIZE_CAMERA(state) {
@@ -95,6 +98,12 @@ export default new Vuex.Store({
         mesh.matrixAutoUpdate = false;
         state.pyramids.push(mesh);
       }
+      var pGeometry = new PlaneGeometry( 10000, 10000, 10000 );
+      var plane = new Mesh( pGeometry, material );
+      plane.rotation.x = - Math.PI / 2
+      self.plane = plane;
+
+      state.scene.add(plane);
       state.scene.add(...state.pyramids);
 
       // lights
