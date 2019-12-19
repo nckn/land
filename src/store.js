@@ -12,10 +12,10 @@ import {
   Mesh,
   DirectionalLight,
   AmbientLight,
-  LineBasicMaterial,
-  Geometry,
-  Vector3,
-  Line,
+  // LineBasicMaterial,
+  // Geometry,
+  // Vector3,
+  // Line,
   PlaneGeometry
 } from "three-full";
 
@@ -92,7 +92,8 @@ export default new Vuex.Store({
       for (var i = 0; i < 500; i++) {
         var mesh = new Mesh(geometry, material);
         mesh.position.x = (Math.random() - 0.5) * 1000;
-        mesh.position.y = (Math.random() - 0.5) * 1000;
+        mesh.position.y = 0
+        // mesh.position.y = (Math.random() - 0.5) * 1000;
         mesh.position.z = (Math.random() - 0.5) * 1000;
         mesh.updateMatrix();
         mesh.matrixAutoUpdate = false;
@@ -117,28 +118,28 @@ export default new Vuex.Store({
       state.scene.add(lightC);
 
       // Axis Line 1
-      var materialB = new LineBasicMaterial({ color: 0x0000ff });
-      var geometryB = new Geometry();
-      geometryB.vertices.push(new Vector3(0, 0, 0));
-      geometryB.vertices.push(new Vector3(0, 1000, 0));
-      var lineA = new Line(geometryB, materialB);
-      state.axisLines.push(lineA);
+      // var materialB = new LineBasicMaterial({ color: 0x0000ff });
+      // var geometryB = new Geometry();
+      // geometryB.vertices.push(new Vector3(0, 0, 0));
+      // geometryB.vertices.push(new Vector3(0, 1000, 0));
+      // var lineA = new Line(geometryB, materialB);
+      // // state.axisLines.push(lineA); Axis line
 
       // Axis Line 2
-      var materialC = new LineBasicMaterial({ color: 0x00ff00 });
-      var geometryC = new Geometry();
-      geometryC.vertices.push(new Vector3(0, 0, 0));
-      geometryC.vertices.push(new Vector3(1000, 0, 0));
-      var lineB = new Line(geometryC, materialC);
-      state.axisLines.push(lineB);
+      // var materialC = new LineBasicMaterial({ color: 0x00ff00 });
+      // var geometryC = new Geometry();
+      // geometryC.vertices.push(new Vector3(0, 0, 0));
+      // geometryC.vertices.push(new Vector3(1000, 0, 0));
+      // var lineB = new Line(geometryC, materialC);
+      // // state.axisLines.push(lineB);
 
       // Axis 3
-      var materialD = new LineBasicMaterial({ color: 0xff0000 });
-      var geometryD = new Geometry();
-      geometryD.vertices.push(new Vector3(0, 0, 0));
-      geometryD.vertices.push(new Vector3(0, 0, 1000));
-      var lineC = new Line(geometryD, materialD);
-      state.axisLines.push(lineC);
+      // var materialD = new LineBasicMaterial({ color: 0xff0000 });
+      // var geometryD = new Geometry();
+      // geometryD.vertices.push(new Vector3(0, 0, 0));
+      // geometryD.vertices.push(new Vector3(0, 0, 1000));
+      // var lineC = new Line(geometryD, materialD);
+      // // state.axisLines.push(lineC);
 
       state.scene.add(...state.axisLines);
     },
