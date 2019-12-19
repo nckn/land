@@ -151,6 +151,9 @@ export default new Vuex.Store({
       state.width = width;
       state.height = height;
       state.camera.aspect = width / height;
+      // Set limits for camera
+      // state.camera.minDistance = 2
+      // state.camera.maxDistance = 10
       state.camera.updateProjectionMatrix();
       state.renderer.setSize(width, height);
       state.controls.handleResize();
