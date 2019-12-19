@@ -9,9 +9,13 @@
   },
   "dependencies": {
     "core-js": "^3.4.3",
-    "vue": "^2.6.10"
+    "three-full": "^17.1.0",
+    "vue": "^2.6.10",
+    "vue-threejs": "^0.2.0-alpha.1",
+    "vuex": "^3.0.1"
   },
   "devDependencies": {
+    "@types/three": "^0.103.2",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
