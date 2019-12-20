@@ -8,7 +8,8 @@ import { mapMutations, mapActions, mapGetters, mapState } from "vuex";
 import { 
   MeshPhongMaterial,
   Mesh,
-  PlaneGeometry
+  PlaneGeometry,
+  DirectionalLight
 } from "three-full";
 
 export default {
@@ -44,6 +45,24 @@ export default {
       //   // alert(self.scene)
 
       // }, 2000)
+      self.assignShadow()
+    },
+    assignShadow () {
+      var self = this
+      var dirLight = new DirectionalLight(0x002288);
+      dirLight.position.set(-1, -1, -1);
+      self.scene.add(dirLight);
+      dirLight.castShadow = true;
+      dirLight.shadow.camera.near = 0.1;
+      dirLight.shadow.camera.far = 500;
+      dirLight.shadow.camera.right = 17;
+      dirLight.shadow.camera.left = - 17;
+      dirLight.shadow.camera.top	= 17;
+      dirLight.shadow.camera.bottom = - 17;
+      dirLight.shadow.mapSize.width = 512;
+      dirLight.shadow.mapSize.height = 512;
+      dirLight.shadow.radius = 4;
+      dirLight.shadow.bias = -0.0005;
     }
   },
   watch: {
