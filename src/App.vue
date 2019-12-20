@@ -2,7 +2,7 @@
   <div id="app">
     //- panel
     //- viewport
-    SpinningLightBalls
+    SoundLand
   </div>
 </template>
 
@@ -10,13 +10,13 @@
 
 // import ViewPort from "@/components/ViewPort.vue";
 import ControlPanel from "@/components/ControlPanel.vue";
-import SpinningLightBalls from "@/components/SpinningLightBalls.vue";
+import SoundLand from "@/components/SoundLand.vue";
 
 export default {
   components: {
     // viewport: ViewPort,
     panel: ControlPanel,
-    SpinningLightBalls
+    SoundLand
   }
 };
 </script>
