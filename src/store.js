@@ -1,23 +1,9 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import {
-  Scene,
   TrackballControls,
   PerspectiveCamera,
   WebGLRenderer,
-  Color,
-  FogExp2,
-  CylinderBufferGeometry,
-  // BoxGeometry,
-  MeshPhongMaterial,
-  Mesh,
-  DirectionalLight,
-  AmbientLight,
-  LineBasicMaterial,
-  Geometry,
-  Vector3,
-  Line,
-  PlaneGeometry,
   PCFShadowMap
 } from "three-full";
 
@@ -86,89 +72,6 @@ export default new Vuex.Store({
     UPDATE_CONTROLS(state) {
       state.controls.update();
     },
-    INITIALIZE_SCENE(state) {
-      state.scene = new Scene();
-      state.scene.background = new Color(0xcccccc);
-      state.scene.fog = new FogExp2(0xcccccc, 0.002);
-      // Pine trees
-      var geometry = new CylinderBufferGeometry(0, 10, 30, 4, 1);
-      var material = new MeshPhongMaterial({
-        color: 0xffffff,
-        flatShading: true
-      });
-      for (var i = 0; i < 500; i++) {
-        // var geometry = new BoxGeometry(2, 2, 2)
-        // Boxes
-        // var geometry = new BoxGeometry( 1, (Math.random() - 0.5) * 4, (Math.random() - 0.5) * 2)
-        var mesh = new Mesh(geometry, material);
-        mesh.position.x = (Math.random() - 0.5) * 10;
-        mesh.position.y = 0
-        // mesh.position.y = (Math.random() - 0.5) * 1000;
-        mesh.position.z = (Math.random() - 0.5) * 10;
-        mesh.updateMatrix();
-        mesh.matrixAutoUpdate = false;
-        mesh.castShadow = true;
-				mesh.receiveShadow = true;
-        state.pyramids.push(mesh);
-      }
-      var pGeometry = new PlaneGeometry( 10000, 10000, 10000 );
-      var plane = new Mesh( pGeometry, material );
-      plane.rotation.x = - Math.PI / 2
-      state.plane = plane;
-      plane.receiveShadow = true;
-
-      state.scene.add(plane);
-      state.scene.add(...state.pyramids);
-
-      // lights
-      var lightA = new DirectionalLight(0xffffff);
-      lightA.position.set(1, 1, 1);
-      state.scene.add(lightA);
-      var lightB = new DirectionalLight(0x002288);
-      lightB.position.set(-1, -1, -1);
-      lightB.rotation.x = - Math.PI / 2
-      state.scene.add(lightB);
-      var lightC = new AmbientLight(0x222222);
-      state.scene.add(lightC);
-
-      lightB.castShadow = true;
-      lightB.shadow.camera.near = 0.1;
-      lightB.shadow.camera.far = 500;
-      lightB.shadow.camera.right = 17;
-      lightB.shadow.camera.left = - 17;
-      lightB.shadow.camera.top	= 17;
-      lightB.shadow.camera.bottom = - 17;
-      lightB.shadow.mapSize.width = 512;
-      lightB.shadow.mapSize.height = 512;
-      lightB.shadow.radius = 4;
-      lightB.shadow.bias = -0.0005;
-
-      // Axis Line 1
-      var materialB = new LineBasicMaterial({ color: 0x0000ff });
-      var geometryB = new Geometry();
-      geometryB.vertices.push(new Vector3(0, 0, 0));
-      geometryB.vertices.push(new Vector3(0, 1000, 0));
-      var lineA = new Line(geometryB, materialB);
-      state.axisLines.push(lineA);
-
-      // Axis Line 2
-      var materialC = new LineBasicMaterial({ color: 0x00ff00 });
-      var geometryC = new Geometry();
-      geometryC.vertices.push(new Vector3(0, 0, 0));
-      geometryC.vertices.push(new Vector3(1000, 0, 0));
-      var lineB = new Line(geometryC, materialC);
-      state.axisLines.push(lineB);
-
-      // Axis 3
-      var materialD = new LineBasicMaterial({ color: 0xff0000 });
-      var geometryD = new Geometry();
-      geometryD.vertices.push(new Vector3(0, 0, 0));
-      geometryD.vertices.push(new Vector3(0, 0, 1000));
-      var lineC = new Line(geometryD, materialD);
-      state.axisLines.push(lineC);
-
-      state.scene.add(...state.axisLines);
-    },
     RESIZE(state, { width, height }) {
       state.width = width;
       state.height = height;
@@ -220,7 +123,7 @@ export default new Vuex.Store({
         commit("INITIALIZE_RENDERER", el);
         commit("INITIALIZE_CAMERA");
         commit("INITIALIZE_CONTROLS");
-        commit("INITIALIZE_SCENE");
+        // commit("INITIALIZE_SCENE");
 
         // Initial scene rendering
         state.renderer.render(state.scene, state.camera);

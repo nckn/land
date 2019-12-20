@@ -7,15 +7,17 @@
 // import { mapMutations, mapActions, mapGetters, mapState } from "vuex";
 
 import {
-  WebGLRenderer,
+  // WebGLRenderer,
   Scene,
   PerspectiveCamera,
   Color,
   FogExp2,
   MeshPhongMaterial,
   PlaneGeometry,
-  Mesh
+  Mesh,
 } from 'three'
+
+import { THREE } from 'three'
 
 export default {
   data() {
@@ -41,7 +43,9 @@ export default {
       self.makePlane()
     },
     setupCamera () {
-      var self = this
+      // var self = this
+      // eslint-disable-next-line no-console
+      console.log('this is ' + THREE);
       self.camera = new PerspectiveCamera(
         // 1. Field of View (degrees) org 60
         20,
@@ -71,8 +75,8 @@ export default {
       // console.log(`The cam pos: $(CAMERA_POSITION.x)`)
     }
   },
-  mounted() {
-    var self = this
+  mounted( ) {
+    // var self = this
     this.setupScene()
     this.setupCamera()
     // Listen for resize
@@ -87,14 +91,14 @@ export default {
       true
     )
     // Initial scene rendering
-    setTimeout(() => {
-      self.renderer.render(self.scene, self.camera)
-      self.renderer = new WebGLRenderer({ antialias: true });
-      self.renderer.setPixelRatio(window.devicePixelRatio);
-      self.renderer.setSize(self.width, self.height);
-      self.renderer.setClearColor(0x2a363b, 1);
-      self.$el.appendChild(self.renderer.domElement);
-    }, 1000);
+    // setTimeout(() => {
+    //   self.renderer.render(self.scene, self.camera)
+    //   self.renderer = new WebGLRenderer({ antialias: true });
+    //   self.renderer.setPixelRatio(window.devicePixelRatio);
+    //   self.renderer.setSize(self.width, self.height);
+    //   self.renderer.setClearColor(0x2a363b, 1);
+    //   self.$el.appendChild(self.renderer.domElement);
+    // }, 1000);
   }
 };
 </script>
