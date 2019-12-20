@@ -1,22 +1,22 @@
 <template lang="pug">
   <div id="app">
     //- panel
-    viewport
-    //- SpinningLightBalls
+    //- viewport
+    SpinningLightBalls
   </div>
 </template>
 
 <script>
 
-import ViewPort from "@/components/ViewPort.vue";
+// import ViewPort from "@/components/ViewPort.vue";
 import ControlPanel from "@/components/ControlPanel.vue";
-// import SpinningLightBalls from "@/components/SpinningLightBalls.vue";
+import SpinningLightBalls from "@/components/SpinningLightBalls.vue";
 
 export default {
   components: {
-    viewport: ViewPort,
+    // viewport: ViewPort,
     panel: ControlPanel,
-    // SpinningLightBalls
+    SpinningLightBalls
   }
 };
 </script>
