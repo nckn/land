@@ -25,7 +25,7 @@ export default class EasterEggs
         this.konamiCode = {}
         this.konamiCode.x = - 60
         this.konamiCode.y = - 100
-        this.konamiCode.sequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight']
+        this.konamiCode.sequence = ['ArrowUp', 'ArrowRight']
 
         if(!this.config.touch)
         {
