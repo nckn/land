@@ -126,11 +126,15 @@ export default class Camera
 
     setOrbitControls()
     {
+        
         // Set up
         this.orbitControls = new OrbitControls(this.instance, this.renderer.domElement)
         this.orbitControls.enabled = true
         this.orbitControls.enableKeys = false
         this.orbitControls.zoomSpeed = 0.5
+        
+        // No pan
+        this.orbitControls.enablePan = false
 
         // Debug
         if(this.debug)
