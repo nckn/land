@@ -39,7 +39,7 @@ export default class Camera
 
         // Items
         this.angle.items = {
-            default: new THREE.Vector3(1.135, - 1.45, 1.15),
+            default: new THREE.Vector3(20.135, - 20.45, 20.15), // org: (1.135, - 1.45, 1.15)
             projects: new THREE.Vector3(0.38, - 1.4, 1.63)
         }
 
@@ -103,7 +103,7 @@ export default class Camera
         // Set up
         this.zoom = {}
         this.zoom.easing = 0.1
-        this.zoom.minDistance = 140
+        this.zoom.minDistance = 14
         this.zoom.amplitude = 15
         this.zoom.value = this.config.cyberTruck ? 0.3 : 0.5
         this.zoom.targetValue = this.zoom.value
