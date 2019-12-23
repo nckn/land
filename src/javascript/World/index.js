@@ -11,7 +11,7 @@ import Tiles from './Tiles.js'
 import Walls from './Walls.js'
 import IntroSection from './Sections/IntroSection.js'
 import ProjectsSection from './Sections/ProjectsSection.js'
-import CrossroadsSection from './Sections/CrossroadsSection.js'
+// import CrossroadsSection from './Sections/CrossroadsSection.js'
 import InformationSection from './Sections/InformationSection.js'
 import PlaygroundSection from './Sections/PlaygroundSection.js'
 import Controls from './Controls.js'
@@ -406,15 +406,15 @@ export default class
             x: 0,
             y: 0
         })
-        this.container.add(this.sections.intro.container)
+        // this.container.add(this.sections.intro.container)
 
         // Crossroads
-        this.sections.crossroads = new CrossroadsSection({
-            ...options,
-            x: 0,
-            y: - 30
-        })
-        this.container.add(this.sections.crossroads.container)
+        // this.sections.crossroads = new CrossroadsSection({
+        //     ...options,
+        //     x: 0,
+        //     y: - 0
+        // })
+        // this.container.add(this.sections.crossroads.container)
 
         // Projects
         this.sections.projects = new ProjectsSection({

@@ -62,9 +62,9 @@ import introDevBaseSource from '../models/intro/dev/base.glb'
 import introDevCollisionSource from '../models/intro/dev/collision.glb'
 
 // Crossroads
-import crossroadsStaticFloorShadowSource from '../models/crossroads/static/floorShadow.png'
-import crossroadsStaticBaseSource from '../models/crossroads/static/base.glb'
-import crossroadsStaticCollisionSource from '../models/crossroads/static/collision.glb'
+// import crossroadsStaticFloorShadowSource from '../models/crossroads/static/floorShadow.png'
+// import crossroadsStaticBaseSource from '../models/crossroads/static/base.glb'
+// import crossroadsStaticCollisionSource from '../models/crossroads/static/collision.glb'
 
 // Car default
 import carDefaultChassisSource from '../models/car/default/chassis.glb'
@@ -263,9 +263,9 @@ export default class Resources extends EventEmitter
             { name: 'introDevCollision', source: introDevCollisionSource },
 
             // Intro
-            { name: 'crossroadsStaticBase', source: crossroadsStaticBaseSource },
-            { name: 'crossroadsStaticCollision', source: crossroadsStaticCollisionSource },
-            { name: 'crossroadsStaticFloorShadow', source: crossroadsStaticFloorShadowSource, type: 'texture' },
+            // { name: 'crossroadsStaticBase', source: crossroadsStaticBaseSource },
+            // { name: 'crossroadsStaticCollision', source: crossroadsStaticCollisionSource },
+            // { name: 'crossroadsStaticFloorShadow', source: crossroadsStaticFloorShadowSource, type: 'texture' },
 
             // Car default
             { name: 'carDefaultChassis', source: carDefaultChassisSource },
