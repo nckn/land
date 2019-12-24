@@ -25,29 +25,9 @@ export default class Buildings
 
         this.models.items = [
             {
-                base: this.resources.items.tilesABase.scene,
-                collision: this.resources.items.tilesACollision.scene,
+                base: this.resources.items.buildingOneBase.scene,
+                collision: this.resources.items.buildingOneCollision.scene,
                 chances: 8
-            },
-            {
-                base: this.resources.items.tilesBBase.scene,
-                collision: this.resources.items.tilesBCollision.scene,
-                chances: 1
-            },
-            {
-                base: this.resources.items.tilesCBase.scene,
-                collision: this.resources.items.tilesCCollision.scene,
-                chances: 2
-            },
-            {
-                base: this.resources.items.tilesDBase.scene,
-                collision: this.resources.items.tilesDCollision.scene,
-                chances: 4
-            },
-            {
-                base: this.resources.items.tilesEBase.scene,
-                collision: this.resources.items.tilesECollision.scene,
-                chances: 2
             }
         ]
 
