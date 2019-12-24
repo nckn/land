@@ -27,6 +27,8 @@ export default class IntroSection
         this.setTitles()
         this.setTiles()
         this.setDikes()
+
+        this.setBuildings()
     }
 
     setStatic()
@@ -268,6 +270,21 @@ export default class IntroSection
             start: new THREE.Vector2(0, - 4.5),
             delta: new THREE.Vector2(0, - 4.5)
         })
+    }
+
+    setBuildings()
+    {
+        this.dikes = {}
+        this.dikes.brickOptions = {
+            base: this.resources.items.buildingOneBase.scene,
+            collision: this.resources.items.buildingOneCollision.scene,
+            offset: new THREE.Vector3(0, 0, 0.1),
+            rotation: new THREE.Euler(0, 0, 0),
+            duplicated: true,
+            shadow: { sizeX: 1.2, sizeY: 1.8, offsetZ: - 0.15, alpha: 0.35 },
+            mass: 0.5,
+            soundName: 'brick'
+        }
     }
 
     setDikes()
