@@ -262,15 +262,16 @@ export default class IntroSection
             mass: 1.5,
             soundName: 'brick'
         })
-        this.objects.add({
-            base: this.resources.items.buildingOneBase.scene,
-            collision: this.resources.items.buildingOneCollision.scene,
-            offset: new THREE.Vector3(0, 0, 0),
-            rotation: new THREE.Euler(0, 0, 0),
-            shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
-            mass: 1.5,
-            soundName: 'brick'
-        })
+        // // Add in building
+        // this.objects.add({
+        //     base: this.resources.items.buildingOneBase.scene,
+        //     collision: this.resources.items.buildingOneCollision.scene,
+        //     offset: new THREE.Vector3(0, 0, 0),
+        //     rotation: new THREE.Euler(0, 0, 0),
+        //     shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
+        //     mass: 1.5,
+        //     soundName: 'brick'
+        // })
     }
 
     setTiles()
@@ -283,17 +284,15 @@ export default class IntroSection
 
     setBuildings()
     {
-        this.dikes = {}
-        this.dikes.brickOptions = {
+        this.objects.add({
             base: this.resources.items.buildingOneBase.scene,
             collision: this.resources.items.buildingOneCollision.scene,
-            offset: new THREE.Vector3(0, 0, 0.1),
+            offset: new THREE.Vector3(10, 0, 0),
             rotation: new THREE.Euler(0, 0, 0),
-            duplicated: true,
-            shadow: { sizeX: 1.2, sizeY: 1.8, offsetZ: - 0.15, alpha: 0.35 },
-            mass: 0.5,
+            shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
+            mass: 1.5,
             soundName: 'brick'
-        }
+        })
     }
 
     setDikes()
