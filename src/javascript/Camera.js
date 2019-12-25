@@ -69,8 +69,8 @@ export default class Camera
 
     setInstance()
     {
-        // Set up
-        this.instance = new THREE.PerspectiveCamera(40, this.sizes.viewport.width / this.sizes.viewport.height, 1, 80)
+        // Set up. Clipping plane is provided by last two arguments
+        this.instance = new THREE.PerspectiveCamera(40, this.sizes.viewport.width / this.sizes.viewport.height, 1, 180)
         this.instance.up.set(0, 0, 1)
         this.instance.position.copy(this.angle.value)
         this.instance.lookAt(new THREE.Vector3())

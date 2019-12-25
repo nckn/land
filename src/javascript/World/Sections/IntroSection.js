@@ -287,10 +287,10 @@ export default class IntroSection
         this.objects.add({
             base: this.resources.items.buildingOneBase.scene,
             collision: this.resources.items.buildingOneCollision.scene,
-            offset: new THREE.Vector3(10, 10, 10),
+            offset: new THREE.Vector3(0, -30, 10),
             rotation: new THREE.Euler(Math.PI * 0.5, 0, 0),
             shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
-            mass: 1.5,
+            mass: 5,
             soundName: 'brick'
         })
     }
