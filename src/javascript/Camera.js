@@ -114,6 +114,7 @@ export default class Camera
         {
             this.zoom.targetValue += _event.deltaY * 0.001
             this.zoom.targetValue = Math.min(Math.max(this.zoom.targetValue, 0), 1)
+            
         }, { passive: true })
 
         // Time tick event
@@ -132,9 +133,15 @@ export default class Camera
         this.orbitControls.enabled = true
         this.orbitControls.enableKeys = false
         this.orbitControls.zoomSpeed = 0.5
+
+        this.orbitControls.addEventListener('change', () => {
+            // console.log('I am in')
+            // this.instance.position.x += 1
+        })
         
         // No pan
         this.orbitControls.enablePan = false
+        // this.orbitControls.enableZoom = false
 
         // Debug
         if(this.debug)
