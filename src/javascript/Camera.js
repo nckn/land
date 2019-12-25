@@ -138,8 +138,10 @@ export default class Camera
         this.orbitControls.minPolarAngle = Math.PI/4 // radians
         this.orbitControls.maxPolarAngle = Math.PI/4 // radians
 
-        this.orbitControls.addEventListener('change', () => {
+        this.orbitControls.addEventListener('change', (e) => {
             // var zoomDistance = this.orbitControls.distanceTo( new THREE.Vector3(0, 0, 0) )
+            // e.preventDefault()
+            // e.stopPropagation()
             console.log(this)
             // console.log(this.zoom.distance)
             // this.instance.position.x += 1
