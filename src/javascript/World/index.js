@@ -8,7 +8,7 @@ import Objects from './Objects.js'
 import Car from './Car.js'
 import Areas from './Areas.js'
 import Tiles from './Tiles.js'
-import Buildings from './Buildings.js'
+// import Buildings from './Buildings.js'
 import Walls from './Walls.js'
 import IntroSection from './Sections/IntroSection.js'
 import ProjectsSection from './Sections/ProjectsSection.js'
@@ -65,7 +65,7 @@ export default class
         this.setCar()
         this.areas.car = this.car
         this.setTiles()
-        this.setBuildings()
+        // this.setBuildings()
         this.setWalls()
         this.setSections()
         this.setEasterEggs()
@@ -331,15 +331,6 @@ export default class
     setTiles()
     {
         this.tiles = new Tiles({
-            resources: this.resources,
-            objects: this.objects,
-            debug: this.debug
-        })
-    }
-
-    setBuildings()
-    {
-        this.buildings = new Buildings({
             resources: this.resources,
             objects: this.objects,
             debug: this.debug

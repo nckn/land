@@ -144,7 +144,7 @@ export default class Camera
             // e.stopPropagation()
             console.log(this)
             // console.log(this.zoom.distance)
-            // this.instance.position.x += 1
+            // this.instance.position.y -= 1
         })
         
         // No pan
