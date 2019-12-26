@@ -100,13 +100,17 @@ export default class Car
     setChassis()
     {
         this.chassis = {}
-        this.chassis.offset = new THREE.Vector3(0, 0, - 0.28)
+        // this.chassis.offset = new THREE.Vector3(0, 0, - 0.28) // If car
+        this.chassis.offset = new THREE.Vector3(0, 0, 2)
         this.chassis.object = this.objects.getConvertedMesh(this.models.chassis.scene.children)
         this.chassis.object.position.copy(this.physics.car.chassis.body.position)
         this.chassis.oldPosition = this.chassis.object.position.clone()
         this.container.add(this.chassis.object)
 
         this.shadows.add(this.chassis.object, { sizeX: 3, sizeY: 2, offsetZ: 0.2 })
+
+        // Rotate and place Torso of Robot
+        this.chassis.object.rotation.x = Math.PI / 2
 
         // Time tick
         this.time.on('tick', () =>
@@ -165,6 +169,7 @@ export default class Car
 
             this.antena.object.rotation.y = this.antena.localPosition.x * 0.1
             this.antena.object.rotation.x = this.antena.localPosition.y * 0.1
+
         })
 
         // Debug

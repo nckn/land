@@ -46,7 +46,7 @@ export default class Sounds
         this.items = []
 
         this.setSettings()
-        this.setMasterVolume()
+        this.setMasterVolume(0)
         this.setMute()
         this.setEngine()
     }
@@ -150,10 +150,10 @@ export default class Sounds
         }
     }
 
-    setMasterVolume()
+    setMasterVolume(vol)
     {
         // Set up
-        this.masterVolume = 0.5
+        this.masterVolume = vol
         Howler.volume(this.masterVolume)
 
         window.requestAnimationFrame(() =>

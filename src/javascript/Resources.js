@@ -73,7 +73,8 @@ import building from '../models/buildings/buildingOne/base.glb'
 import buildingCollisionSource from '../models/buildings/buildingOne/collision.glb'
 
 // Car default
-import carDefaultChassisSource from '../models/car/default/chassis.glb'
+// import carDefaultChassisSource from '../models/car/default/chassis.glb'
+import carDefaultChassisSource from '../models/car/default/robot-body.glb'
 import carDefaultWheelSource from '../models/car/default/wheel.glb'
 import carDefaultBackLightsBrakeSource from '../models/car/default/backLightsBrake.glb'
 import carDefaultBackLightsReverseSource from '../models/car/default/backLightsReverse.glb'
