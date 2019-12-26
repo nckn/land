@@ -15,7 +15,7 @@ export default class Objects
         this.debug = _options.debug
 
         // Set up
-        this.container = new THREE.Object3D()
+        this.container = new THREE.Object3D() // Container is the Three 3D object
         this.container.matrixAutoUpdate = false
 
         this.items = []
@@ -261,7 +261,7 @@ export default class Objects
         return container
     }
 
-    // the grand and spectacular method that makes new objects
+    // NOTE: the grand and spectacular method that makes new objects
     add(_options)
     {
         const object = {}
