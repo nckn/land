@@ -94,9 +94,17 @@ export default class Materials
 
         // Red
         this.shades.items.red = new MatcapMaterial()
-        // this.shades.items.red.name = 'shadeRed'
+        this.shades.items.red.name = 'shadeRed'
         this.shades.items.red.uniforms.matcap.value = this.resources.items.matcapRedTexture
         this.items.red = this.shades.items.red
+        
+        // Testing Robot Body shade
+        this.shades.items.bot = new MatcapMaterial()
+        this.shades.items.bot.name = 'robotBody'
+        this.shades.items.bot.uniforms.matcap.value = this.resources.items.matcapRedTexture
+        this.items.bot = this.shades.items.red
+        /*
+        */
 
         // Black
         this.shades.items.black = new MatcapMaterial()

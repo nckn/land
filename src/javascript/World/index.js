@@ -129,7 +129,7 @@ export default class
                     const material = this.materials.shades.items[_materialKey]
                     // material.uniforms.uRevealProgress.value = (_materialKey % 2) ? this.reveal.matcapsProgress : ''
                     material.uniforms.uRevealProgress.value = this.reveal.matcapsProgress
-                    console.log(`mat is: ${JSON.stringify(material.name)}`)
+                    // console.log(`mat is: ${JSON.stringify(material.name)}`)
                 }
 
                 // Save
