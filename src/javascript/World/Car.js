@@ -101,7 +101,7 @@ export default class Car
     {
         this.chassis = {}
         // this.chassis.offset = new THREE.Vector3(0, 0, - 0.28) // If car
-        this.chassis.offset = new THREE.Vector3(0, 0, 2)
+        this.chassis.offset = new THREE.Vector3(0, 0, 0)
         this.chassis.object = this.objects.getConvertedMesh(this.models.chassis.scene.children)
         this.chassis.object.position.copy(this.physics.car.chassis.body.position)
         this.chassis.oldPosition = this.chassis.object.position.clone()
@@ -110,7 +110,7 @@ export default class Car
         this.shadows.add(this.chassis.object, { sizeX: 3, sizeY: 2, offsetZ: 0.2 })
 
         // Rotate and place Torso of Robot
-        this.chassis.object.rotation.x = Math.PI / 2
+        // this.chassis.object.rotation.x = Math.PI / 2
 
         // Time tick
         this.time.on('tick', () =>
@@ -130,6 +130,60 @@ export default class Car
         })
     }
 
+    setHead()
+    {
+        this.head = {}
+
+        this.head.speedStrength = 10
+        this.head.damping = 0.035
+        this.head.pullBackStrength = 0.02
+
+        this.head.object = this.objects.getConvertedMesh(this.models.head.scene.children)
+        this.chassis.object.add(this.head.object)
+
+        this.head.speed = new THREE.Vector2()
+        this.head.absolutePosition = new THREE.Vector2()
+        this.head.localPosition = new THREE.Vector2()
+
+        // Time tick
+        this.time.on('tick', () =>
+        {
+            const max = 1
+            const accelerationX = Math.min(Math.max(this.movement.acceleration.x, - max), max)
+            const accelerationY = Math.min(Math.max(this.movement.acceleration.y, - max), max)
+
+            this.head.speed.x -= accelerationX * this.head.speedStrength
+            this.head.speed.y -= accelerationY * this.head.speedStrength
+
+            const position = this.head.absolutePosition.clone()
+            const pullBack = position.negate().multiplyScalar(position.length() * this.head.pullBackStrength)
+            this.head.speed.add(pullBack)
+
+            this.head.speed.x *= 1 - this.head.damping
+            this.head.speed.y *= 1 - this.head.damping
+
+            this.head.absolutePosition.add(this.head.speed)
+
+            this.head.localPosition.copy(this.head.absolutePosition)
+            this.head.localPosition.rotateAround(new THREE.Vector2(), - this.chassis.object.rotation.z)
+
+            this.head.object.rotation.y = this.head.localPosition.x * 0.1
+            this.head.object.rotation.x = this.head.localPosition.y * 0.1
+
+        })
+
+        // Debug
+        if(this.debug)
+        {
+            const folder = this.debugFolder.addFolder('head')
+            folder.open()
+
+            folder.add(this.head, 'speedStrength').step(0.001).min(0).max(50)
+            folder.add(this.head, 'damping').step(0.0001).min(0).max(0.1)
+            folder.add(this.head, 'pullBackStrength').step(0.0001).min(0).max(0.1)
+        }
+    }
+    
     setAntena()
     {
         this.antena = {}

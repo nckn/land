@@ -78,7 +78,10 @@ import carDefaultChassisSource from '../models/car/default/robot-body.glb'
 import carDefaultWheelSource from '../models/car/default/wheel.glb'
 import carDefaultBackLightsBrakeSource from '../models/car/default/backLightsBrake.glb'
 import carDefaultBackLightsReverseSource from '../models/car/default/backLightsReverse.glb'
-import carDefaultAntenaSource from '../models/car/default/antena.glb'
+// import carDefaultAntenaSource from '../models/car/default/antena.glb'
+
+// Robot parts
+import carDefaultAntenaSource from '../models/car/default/robot-head.glb'
 
 // Car cyber truck
 import carCyberTruckChassisSource from '../models/car/cyberTruck/chassis.glb'
