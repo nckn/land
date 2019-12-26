@@ -135,8 +135,8 @@ export default class Camera
         this.orbitControls.zoomSpeed = 0.5
 
         // Constrain orbit angle, vertically. Approximately at a 45 degrees angle
-        this.orbitControls.minPolarAngle = Math.PI/4 // radians
-        this.orbitControls.maxPolarAngle = Math.PI/4 // radians
+        // this.orbitControls.minPolarAngle = Math.PI/4 // radians
+        // this.orbitControls.maxPolarAngle = Math.PI/4 // radians
 
         this.orbitControls.addEventListener('change', (e) => {
             // var zoomDistance = this.orbitControls.distanceTo( new THREE.Vector3(0, 0, 0) )
