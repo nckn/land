@@ -225,8 +225,8 @@ export default class Car
             this.antena.localPosition.copy(this.antena.absolutePosition)
             this.antena.localPosition.rotateAround(new THREE.Vector2(), - this.chassis.object.rotation.z)
 
-            this.antena.object.rotation.y = this.antena.localPosition.x * 0.1
-            this.antena.object.rotation.x = this.antena.localPosition.y * 0.1
+            this.antena.object.rotation.y = this.antena.localPosition.x * 0.01 // Org: 0.1
+            this.antena.object.rotation.x = this.antena.localPosition.y * 0.01 // Org: 0.1
 
         })
 
@@ -246,7 +246,7 @@ export default class Car
     {
         this.backLightsBrake = {}
 
-        this.backLightsBrake.material = this.materials.pures.items.white.clone()
+        this.backLightsBrake.material = this.materials.pures.items.red.clone()
         this.backLightsBrake.material.transparent = true
         this.backLightsBrake.material.opacity = 0.5
 
