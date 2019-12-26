@@ -246,7 +246,7 @@ export default class Car
     {
         this.backLightsBrake = {}
 
-        this.backLightsBrake.material = this.materials.pures.items.red.clone()
+        this.backLightsBrake.material = this.materials.pures.items.white.clone()
         this.backLightsBrake.material.transparent = true
         this.backLightsBrake.material.opacity = 0.5
 
