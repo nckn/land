@@ -34,6 +34,7 @@ export default class Car
         this.setModels()
         this.setMovement()
         this.setChassis()
+        this.setHead()
         this.setAntena()
         this.setBackLights()
         this.setWheels()
@@ -59,6 +60,7 @@ export default class Car
         else
         {
             this.models.chassis = this.resources.items.carDefaultChassis
+            this.models.head = this.resources.items.robotHead
             this.models.antena = this.resources.items.carDefaultAntena
             this.models.backLightsBrake = this.resources.items.carDefaultBackLightsBrake
             this.models.backLightsReverse = this.resources.items.carDefaultBackLightsReverse
@@ -134,9 +136,9 @@ export default class Car
     {
         this.head = {}
 
-        this.head.speedStrength = 10
+        this.head.speedStrength = 6 // Org: 10
         this.head.damping = 0.035
-        this.head.pullBackStrength = 0.02
+        this.head.pullBackStrength = 0.08 // Org: 0.02
 
         this.head.object = this.objects.getConvertedMesh(this.models.head.scene.children)
         this.chassis.object.add(this.head.object)
@@ -145,6 +147,7 @@ export default class Car
         this.head.absolutePosition = new THREE.Vector2()
         this.head.localPosition = new THREE.Vector2()
 
+        /*
         // Time tick
         this.time.on('tick', () =>
         {
@@ -171,6 +174,7 @@ export default class Car
             this.head.object.rotation.x = this.head.localPosition.y * 0.1
 
         })
+        */
 
         // Debug
         if(this.debug)
@@ -193,7 +197,7 @@ export default class Car
         this.antena.pullBackStrength = 0.02
 
         this.antena.object = this.objects.getConvertedMesh(this.models.antena.scene.children)
-        this.chassis.object.add(this.antena.object)
+        this.head.object.add(this.antena.object)
 
         this.antena.speed = new THREE.Vector2()
         this.antena.absolutePosition = new THREE.Vector2()
