@@ -261,6 +261,7 @@ export default class Objects
         return container
     }
 
+    // the grand and spectacular method that makes new objects
     add(_options)
     {
         const object = {}
