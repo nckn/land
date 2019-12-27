@@ -121,7 +121,7 @@ export default class Camera
             // this.zoom.targetValue += _event.deltaY * 0.001
             // this.zoom.targetValue = Math.min(Math.max(this.zoom.targetValue, 0), 1)
 
-            // console.log(_event)
+            console.log(_event)
             // this.instance.position.x = _event.deltaY * 0.05
             
         }, { passive: true })
