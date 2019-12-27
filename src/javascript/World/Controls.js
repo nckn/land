@@ -46,31 +46,33 @@ export default class Controls extends EventEmitter
         this.posEnd = 0
 
         this.startMovement = (_event) => {
-            this.posStart = _event.changedTouches[0]
+            this.posStart = _event.changedTouches[0].screenY
         }
 
         this.stopMovement = (_event) => {
-            this.posEnd = _event.changedTouches[0]
+            this.posEnd = _event.changedTouches[0].screenY
         }
         
         this.detectTouch = (_event) => {
             // Touch event
-            var output = ''
-            if (this.posEnd.pageY - this.posStart.pageY > 0) {
-                // alert('up')
-                // slide_up()
-                output = 'going up'
-                this.direction = 'up'
-                // alert('up')
-            } else if(this.posEnd.pageY - this.posStart.pageY < 0) {
+            // this.posStart = _event.changedTouches[0]
+            //Do not move when there are multiple touch es on the screen or when the page is zoomed
+            if (_event.targetTouches.length > 1 || _event.scale && _event.scale !== 1) return
+            if (this.posEnd < this.posStart) {
                 // alert('down')
                 // slide_down()
-                output = 'going down'
+                // output = 'going down'
                 this.direction = 'down'
                 // alert('down')
+            } else if (this.posEnd > this.posStart) {
+                // alert('up')
+                // slide_up()
+                // output = 'going up'
+                this.direction = 'up'
+                // alert('up')
             }
-            // document.getElementById('infoTeller').innerHTML = this.posStart.pageY
-            document.getElementById('infoTeller').innerHTML = output
+            // document.getElementById('infoTeller').innerHTML = this.posStart.screenY
+            document.getElementById('infoTeller').innerHTML = `posStart: ${this.posStart}, \n posEnd: ${this.posEnd}`
             this.counter += 1
             if (this.marker) {
                 this.wheelStart()
