@@ -60,8 +60,9 @@ export default class Controls extends EventEmitter
             for (var property in object) {
                 output += property + ': ' + object[property]+'; ';
             }
-            console.log(output)
+            // console.log(output)
             // document.getElementById('infoTeller').innerHTML = output
+            // TODO: Make logic better for touch
             if (_event.type == 'touchmove') {
                 output = this.touchNow
                 if (this.touchBefore.screenY - this.touchNow.screenY > 0) {
@@ -99,22 +100,22 @@ export default class Controls extends EventEmitter
         this.wheelStart = () => {
             this.marker = false
             this.wheelAct()
-            console.log('wheel start')
+            // console.log('wheel start')
             this.counter3 = new Date()
             // info.innerHTML = 'Start event. Direction: ' + direction;
         }
         
         this.wheelAct = () => {
             this.counter2 = this.counter1
-            console.log('wheel during')
+            // console.log('wheel during')
             if (this.direction == 'up') {
-                console.log('scrolling up')
+                // console.log('scrolling up')
                 this.actions.up = true
                 this.actions.down = false
             } else if (this.direction == 'down') {
                 this.actions.up = false
                 this.actions.down = true
-                console.log('scrolling down')
+                // console.log('scrolling down')
             }
             setTimeout(() => {
                 if (this.counter2 == this.counter1) {
@@ -127,7 +128,7 @@ export default class Controls extends EventEmitter
         }
 
         this.wheelEnd = () => {
-            console.log('wheel ending')
+            // console.log('wheel ending')
             this.counter4 = new Date()
             // info.innerHTML = info.innerHTML + '<br>End event. Duration: ' + (counter4-counter3) + ' ms'
             this.marker = true
