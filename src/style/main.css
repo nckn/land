@@ -28,3 +28,13 @@ html
 {
     cursor: pointer;
 }
+
+#infoTeller {
+    width: 120px;
+    height: auto;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #777;
+    padding: 8px;
+}

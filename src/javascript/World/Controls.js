@@ -30,6 +30,7 @@ export default class Controls extends EventEmitter
         this.actions.boost = false
     }
 
+    // Taken from https://jsfiddle.net/rafaylik/sLjyyfox/
     setMouseWheelRules() {
         this.mouseWheel = {}
         this.mouseWheel.events = {}
@@ -44,6 +45,11 @@ export default class Controls extends EventEmitter
 
         this.detectWhich = (_event) => {
             // console.log(_event)
+            document.getElementById('infoTeller').innerHTML = _event.type
+            if (_event.type !== 'wheel') {
+                return
+                console.log('this is the event ' + event.type)
+            }
             this.counter += 1
             this.delta = _event.deltaY;
             this.direction = this.delta > 0 ? 'up' : 'down'
@@ -113,27 +119,8 @@ export default class Controls extends EventEmitter
         // Listen to mousewheel event
         document.addEventListener('wheel', this.detectWhich, { passive: true })
         
-        // Listen to mousewheel event
-        document.addEventListener('touchmove', (_event) =>
-        {
-            this.actions.up = true
-            // if (_event.deltaY < 0) {
-            //     console.log('scrolling up')
-            //     this.actions.up = false
-            //     this.actions.down = true
-            // } else if (_event.deltaY > 0) {
-            //     this.actions.up = true
-            //     this.actions.down = false
-            //     console.log('scrolling down')
-            // }
-            
-            // this.zoom.targetValue += _event.deltaY * 0.001
-            // this.zoom.targetValue = Math.min(Math.max(this.zoom.targetValue, 0), 1)
-            // this.actions.boost = true
-            // console.log(_event)
-            // this.instance.position.x = _event.deltaY * 0.05
-            
-        }, { passive: true })
+        document.addEventListener('touch', this.detectWhich, { passive: true })
+        
     }
 
     setKeyboard()
