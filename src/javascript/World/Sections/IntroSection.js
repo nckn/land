@@ -28,7 +28,7 @@ export default class IntroSection
         this.setTiles()
         this.setDikes()
 
-        this.setBuildings()
+        // this.setBuildings()
     }
 
     setStatic()
