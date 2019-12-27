@@ -74,6 +74,7 @@ export default class Objects
                     const match = _mesh.name.match(/^pure([a-z]+)_?[0-9]{0,3}?/i)
                     const materialName = match[1].toLowerCase()
                     let material = this.materials.pures.items[materialName]
+                    // console.log(`mat is: ${JSON.stringify(material)}`)
 
                     // Default
                     if(typeof material === 'undefined')
