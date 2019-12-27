@@ -47,6 +47,10 @@ export default class Controls extends EventEmitter
         this.stopMovement = (_event) => {
             this.touchBefore = _event.changedTouches[0]
         }
+        
+        this.startMovement = (_event) => {
+            this.touchNow = _event.changedTouches[0]
+        }
 
         this.detectWhich = (_event) => {
             // console.log(_event)
@@ -59,7 +63,6 @@ export default class Controls extends EventEmitter
             console.log(output)
             // document.getElementById('infoTeller').innerHTML = output
             if (_event.type == 'touchmove') {
-                this.touchNow = _event.changedTouches[0]
                 output = this.touchNow
                 if (this.touchBefore.screenY - this.touchNow.screenY > 0) {
                     // slide_up()
@@ -146,6 +149,7 @@ export default class Controls extends EventEmitter
         document.addEventListener('wheel', this.detectWhich, { passive: true })
         
         document.addEventListener('touchmove', this.detectWhich, { passive: true })
+        document.addEventListener('touchstart', this.startMovement, { passive: true })
         document.addEventListener('touchend', this.stopMovement, { passive: true })
         
     }
