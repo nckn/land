@@ -139,8 +139,8 @@ export default class Camera
         
         // Set up
         this.orbitControls = new OrbitControls(this.instance, this.renderer.domElement)
-        // this.orbitControls.enabled = true /* This disables touch devices */
-        this.orbitControls.enabled = false /* Only with this as false touch devices work */
+        this.orbitControls.enabled = true /* This disables touch devices */
+        // this.orbitControls.enabled = false /* Only with this as false touch devices work */
         this.orbitControls.enableKeys = false
         this.orbitControls.zoomSpeed = 0.5
 

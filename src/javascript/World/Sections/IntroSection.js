@@ -21,7 +21,7 @@ export default class IntroSection
         this.container.matrixAutoUpdate = false
         this.container.updateMatrix()
 
-        this.setStatic()
+        // this.setStatic()
         this.setInstructions()
         this.setOtherInstructions()
         this.setTitles()
@@ -29,6 +29,7 @@ export default class IntroSection
         this.setDikes()
 
         // this.setBuildings()
+        this.setMiscShapes()
     }
 
     setStatic()
@@ -279,6 +280,21 @@ export default class IntroSection
         this.tiles.add({
             start: new THREE.Vector2(0, - 4.5),
             delta: new THREE.Vector2(0, - 4.5)
+        })
+    }
+
+    setMiscShapes()
+    {
+        this.objects.add({
+            base: this.resources.items.lettersNKBase.scene,
+            collision: this.resources.items.lettersNKCollision.scene,
+            // collision: this.resources.items.buildingOneCollision.scene,
+            offset: new THREE.Vector3(-5, 0, 0),
+            rotation: new THREE.Euler(Math.PI / 2, -Math.PI / 4, 0),
+            // scale: new THREE.Vector3(.5, .5, .5),
+            shadow: { sizeX: 2.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.3 },
+            mass: 0,
+            soundName: 'brick'
         })
     }
 

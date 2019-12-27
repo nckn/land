@@ -72,6 +72,10 @@ import introDevCollisionSource from '../models/intro/dev/collision.glb'
 import building from '../models/buildings/buildingOne/base.glb'
 import buildingCollisionSource from '../models/buildings/buildingOne/collision.glb'
 
+// lettersNK
+import lettersNK from '../models/intro/static/letters-nk.glb'
+import lettersNKCollisionSource from '../models/intro/static/letters-nk-collision.glb'
+
 // Car default
 // import carDefaultChassisSource from '../models/car/default/chassis.glb'
 import carDefaultChassisSource from '../models/car/default/robot-body.glb'
@@ -282,6 +286,10 @@ export default class Resources extends EventEmitter
             // Buildings
             { name: 'buildingOneBase', source: building },
             { name: 'buildingOneCollision', source: buildingCollisionSource },
+            
+            // Misc shapes
+            { name: 'lettersNKBase', source: lettersNK },
+            { name: 'lettersNKCollision', source: lettersNKCollisionSource },
 
             // Car default
             { name: 'carDefaultChassis', source: carDefaultChassisSource },

@@ -97,7 +97,7 @@ export default class InformationSection
                 labelTexture: this.resources.items.informationContactGithubLabelTexture
             },
             {
-                href: 'https://www.linkedin.com/in/simonbruno77/',
+                href: 'https://www.linkedin.com/in/konradstudio/',
                 labelTexture: this.resources.items.informationContactLinkedinLabelTexture
             },
             {

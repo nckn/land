@@ -166,7 +166,8 @@ export default class Application
         this.passes.glowsPass.material.uniforms.uPosition.value = new THREE.Vector2(0, 0.25)
         this.passes.glowsPass.material.uniforms.uRadius.value = 0.7
         this.passes.glowsPass.material.uniforms.uColor.value = new THREE.Color(this.passes.glowsPass.color)
-        this.passes.glowsPass.material.uniforms.uAlpha.value = 0.55
+        // this.passes.glowsPass.material.uniforms.uAlpha.value = 0.55 // Org value: 0.55 
+        this.passes.glowsPass.material.uniforms.uAlpha.value = 0.0
 
         // Debug
         if(this.debug)
