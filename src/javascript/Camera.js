@@ -30,6 +30,9 @@ export default class Camera
         this.setInstance()
         this.setZoom()
         this.setOrbitControls()
+
+        // Setup mouse events and raycasting
+        this.setUpEvents()
     }
 
     setAngle()
@@ -39,7 +42,8 @@ export default class Camera
 
         // Items
         this.angle.items = {
-            default: new THREE.Vector3(20.135, - 20.45, 20.15), // org: (1.135, - 1.45, 1.15)
+            // default: new THREE.Vector3(20.135, - 20.45, 20.15), // Robot game
+            default: new THREE.Vector3(0, -Math.PI * 2, 20), // org: (1.135, - 1.45, 1.15)
             projects: new THREE.Vector3(0.38, - 1.4, 1.63)
         }
 
@@ -73,6 +77,7 @@ export default class Camera
         this.instance = new THREE.PerspectiveCamera(40, this.sizes.viewport.width / this.sizes.viewport.height, 1, 180)
         // this.instance = new THREE.OrthographicCamera(0, this.sizes.viewport.width, 0, this.sizes.viewport.height, 1, 180)
         this.instance.up.set(0, 0, 1)
+        this.instance.rotation.y = 90 * Math.PI / 180
         this.instance.position.copy(this.angle.value)
         this.instance.lookAt(new THREE.Vector3())
 
@@ -113,8 +118,11 @@ export default class Camera
         // Listen to mousewheel event
         document.addEventListener('mousewheel', (_event) =>
         {
-            this.zoom.targetValue += _event.deltaY * 0.001
-            this.zoom.targetValue = Math.min(Math.max(this.zoom.targetValue, 0), 1)
+            // this.zoom.targetValue += _event.deltaY * 0.001
+            // this.zoom.targetValue = Math.min(Math.max(this.zoom.targetValue, 0), 1)
+
+            // console.log(_event)
+            // this.instance.position.x = _event.deltaY * 0.05
             
         }, { passive: true })
 
@@ -131,8 +139,8 @@ export default class Camera
         
         // Set up
         this.orbitControls = new OrbitControls(this.instance, this.renderer.domElement)
-        this.orbitControls.enabled = true /* This disables touch devices */
-        // this.orbitControls.enabled = false /* Only with this as false touch devices work */
+        // this.orbitControls.enabled = true /* This disables touch devices */
+        this.orbitControls.enabled = false /* Only with this as false touch devices work */
         this.orbitControls.enableKeys = false
         this.orbitControls.zoomSpeed = 0.5
 
@@ -158,5 +166,31 @@ export default class Camera
         {
             this.debugFolder.add(this.orbitControls, 'enabled').name('orbitControlsEnabled')
         }
+    }
+
+    setUpEvents() {
+        
+        // Add raycaster and mouse as 2D vector
+        // var raycaster = new THREE.Raycaster()
+        // var mouse = new THREE.Vector2()
+
+        // Mouse wheel event
+        // window.addEventListener('mousewheel', (_event) =>
+        // {
+        //     console.log(`event is:`)
+        //     console.log(_event)
+        //     this.instance.position.x = _event.deltaY * 0.05
+        // })
+
+        // Add eventlisteners for mouse and touch devices
+        // document.addEventListener('mousedown', this.setTouchAndCursorEvents, false)
+        // document.addEventListener('touchstart', this.setTouchAndCursorEvents, false)
+    }
+
+    setTouchAndCursorEvents(event) {
+        event.preventDefault()
+        var clientX = event.touches[0].clienX
+        var clientY = event.touches[0].clienY
+        console.log(clientX + ', ' + clientY)
     }
 }
