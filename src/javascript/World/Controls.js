@@ -42,17 +42,43 @@ export default class Controls extends EventEmitter
         this.counter2 = null
         this.counter3 = null
         this.counter4 = null
+        this.touchBefore = 0
+
+        this.stopMovement = (_event) => {
+            this.touchBefore = _event.changedTouches[0]
+        }
 
         this.detectWhich = (_event) => {
             // console.log(_event)
-            document.getElementById('infoTeller').innerHTML = _event.type
-            if (_event.type !== 'wheel') {
-                return
-                console.log('this is the event ' + event.type)
+            var output = ''
+            // alert('hey')
+            var object = _event
+            for (var property in object) {
+                output += property + ': ' + object[property]+'; ';
             }
+            console.log(output)
+            // document.getElementById('infoTeller').innerHTML = output
+            if (_event.type == 'touchmove') {
+                this.touchNow = _event.changedTouches[0]
+                output = this.touchNow
+                if (this.touchBefore.screenY - this.touchNow.screenY > 0) {
+                    // slide_up()
+                    output = 'going up'
+                    this.direction = 'up'
+                    // alert('up')
+                } else if(this.touchBefore.screenY - this.touchNow.screenY < 0) {
+                    // slide_down()
+                    output = 'going down'
+                    this.direction = 'down'
+                    // alert('down')
+                }
+                document.getElementById('infoTeller').innerHTML = this.touchNow.screenY
+            } else if (_event.type == 'wheel') {
+                this.direction = this.delta > 0 ? 'up' : 'down'
+                this.delta = _event.deltaY;
+            }
+            
             this.counter += 1
-            this.delta = _event.deltaY;
-            this.direction = this.delta > 0 ? 'up' : 'down'
             if (this.marker) {
                 this.wheelStart()
             }
@@ -119,7 +145,8 @@ export default class Controls extends EventEmitter
         // Listen to mousewheel event
         document.addEventListener('wheel', this.detectWhich, { passive: true })
         
-        document.addEventListener('touchstart', this.detectWhich, { passive: true })
+        document.addEventListener('touchmove', this.detectWhich, { passive: true })
+        document.addEventListener('touchend', this.stopMovement, { passive: true })
         
     }
 
