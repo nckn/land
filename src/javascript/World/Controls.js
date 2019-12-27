@@ -16,6 +16,7 @@ export default class Controls extends EventEmitter
 
         this.setActions()
         this.setKeyboard()
+        this.setMouseWheelRules()
     }
 
     setActions()
@@ -27,6 +28,112 @@ export default class Controls extends EventEmitter
         this.actions.left = false
         this.actions.brake = false
         this.actions.boost = false
+    }
+
+    setMouseWheelRules() {
+        this.mouseWheel = {}
+        this.mouseWheel.events = {}
+        this.delta = null
+        this.marker = true
+        this.direction = null
+        this.interval = 50
+        this.counter1 = 0
+        this.counter2 = null
+        this.counter3 = null
+        this.counter4 = null
+
+        this.detectWhich = (_event) => {
+            // console.log(_event)
+            this.counter += 1
+            this.delta = _event.deltaY;
+            this.direction = this.delta > 0 ? 'up' : 'down'
+            if (this.marker) {
+                this.wheelStart()
+            }
+            // if (_event.deltaY < 0) {
+            //     console.log('scrolling up')
+            //     this.actions.up = false
+            //     this.actions.down = true
+            // } else if (_event.deltaY > 0) {
+            //     this.actions.up = true
+            //     this.actions.down = false
+            //     console.log('scrolling down')
+            // }
+        }
+
+        this.wheelStart = () => {
+            this.marker = false
+            this.wheelAct()
+            console.log('wheel start')
+            this.counter3 = new Date()
+            // info.innerHTML = 'Start event. Direction: ' + direction;
+        }
+        
+        this.wheelAct = () => {
+            this.counter2 = this.counter1
+            console.log('wheel during')
+            if (this.direction == 'up') {
+                console.log('scrolling up')
+                this.actions.up = true
+                this.actions.down = false
+            } else if (this.direction == 'down') {
+                this.actions.up = false
+                this.actions.down = true
+                console.log('scrolling down')
+            }
+            setTimeout(() => {
+                if (this.counter2 == this.counter1) {
+                    this.wheelEnd()
+                } else {
+                    // info.innerHTML = info.innerHTML + '<br>...';
+                    this.wheelAct()
+                }
+            }, this.interval)
+        }
+
+        this.wheelEnd = () => {
+            console.log('wheel ending')
+            this.counter4 = new Date()
+            // info.innerHTML = info.innerHTML + '<br>End event. Duration: ' + (counter4-counter3) + ' ms'
+            this.marker = true
+            this.counter1 = 0
+            this.counter2 = false
+            this.counter3 = false
+            this.counter4 = false
+
+            // Stop motion
+            this.actions.up = false
+            this.actions.down = false
+        }
+
+        // this.mouseWheel.events.wheel = (_event) {
+
+        // }
+
+        // Listen to mousewheel event
+        document.addEventListener('wheel', this.detectWhich, { passive: true })
+        
+        // Listen to mousewheel event
+        document.addEventListener('touchmove', (_event) =>
+        {
+            this.actions.up = true
+            // if (_event.deltaY < 0) {
+            //     console.log('scrolling up')
+            //     this.actions.up = false
+            //     this.actions.down = true
+            // } else if (_event.deltaY > 0) {
+            //     this.actions.up = true
+            //     this.actions.down = false
+            //     console.log('scrolling down')
+            // }
+            
+            // this.zoom.targetValue += _event.deltaY * 0.001
+            // this.zoom.targetValue = Math.min(Math.max(this.zoom.targetValue, 0), 1)
+            // this.actions.boost = true
+            // console.log(_event)
+            // this.instance.position.x = _event.deltaY * 0.05
+            
+        }, { passive: true })
     }
 
     setKeyboard()
@@ -118,49 +225,7 @@ export default class Controls extends EventEmitter
 
         document.addEventListener('keydown', this.keyboard.events.keyDown)
         document.addEventListener('keyup', this.keyboard.events.keyUp)
-        
-        // Listen to mousewheel event
-        document.addEventListener('mousewheel', (_event) =>
-        {
-            if (_event.deltaY < 0) {
-                console.log('scrolling up')
-                this.actions.up = false
-                this.actions.down = true
-            } else if (_event.deltaY > 0) {
-                this.actions.up = true
-                this.actions.down = false
-                console.log('scrolling down')
-            }
-            
-            // this.zoom.targetValue += _event.deltaY * 0.001
-            // this.zoom.targetValue = Math.min(Math.max(this.zoom.targetValue, 0), 1)
-            // this.actions.boost = true
-            // console.log(_event)
-            // this.instance.position.x = _event.deltaY * 0.05
-            
-        }, { passive: true })
-        
-        // Listen to mousewheel event
-        document.addEventListener('touchmove', (_event) =>
-        {
-            this.actions.up = true
-            // if (_event.deltaY < 0) {
-            //     console.log('scrolling up')
-            //     this.actions.up = false
-            //     this.actions.down = true
-            // } else if (_event.deltaY > 0) {
-            //     this.actions.up = true
-            //     this.actions.down = false
-            //     console.log('scrolling down')
-            // }
-            
-            // this.zoom.targetValue += _event.deltaY * 0.001
-            // this.zoom.targetValue = Math.min(Math.max(this.zoom.targetValue, 0), 1)
-            // this.actions.boost = true
-            // console.log(_event)
-            // this.instance.position.x = _event.deltaY * 0.05
-            
-        }, { passive: true })
+    
     }
 
     setTouch()
