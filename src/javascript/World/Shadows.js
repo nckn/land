@@ -18,7 +18,9 @@ export default class Shadows
         this.distancePower = 2
         this.zFightingDistance = 0.001
         // this.color = '#d04500'
-        this.color = '#2F98BA'
+        // this.color = '#2F98BA'
+        // Shadow color is set here
+        this.color = '#000'
         this.wireframeVisible = false
         this.items = []
 

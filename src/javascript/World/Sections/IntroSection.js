@@ -21,6 +21,7 @@ export default class IntroSection
         this.container.matrixAutoUpdate = false
         this.container.updateMatrix()
 
+        // These are the trees among other static elements
         // this.setStatic()
         this.setInstructions()
         this.setOtherInstructions()
