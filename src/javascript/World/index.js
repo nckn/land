@@ -212,19 +212,18 @@ export default class
         // Ready
         this.resources.on('ready', () =>
         {
-            window.requestAnimationFrame(() =>
-            {
-                this.startingScreen.area.activate()
+            // Org step 1
+            // window.requestAnimationFrame(() =>
+            // {
+            //     this.startingScreen.area.activate()
 
-                TweenLite.to(this.startingScreen.area.floorBorder.material.uniforms.uAlpha, 0.3, { value: 0.3 })
-                TweenLite.to(this.startingScreen.loadingLabel.material, 0.3, { opacity: 0 })
-                TweenLite.to(this.startingScreen.startLabel.material, 0.3, { opacity: 1, delay: 0.3 })
-            })
-        })
+            //     TweenLite.to(this.startingScreen.area.floorBorder.material.uniforms.uAlpha, 0.3, { value: 0.3 })
+            //     TweenLite.to(this.startingScreen.loadingLabel.material, 0.3, { opacity: 0 })
+            //     TweenLite.to(this.startingScreen.startLabel.material, 0.3, { opacity: 1, delay: 0.3 })
+            // })
 
-        // On interact, reveal
-        this.startingScreen.area.on('interact', () =>
-        {
+            // New step 1, starting everything when ready
+            TweenLite.to(this.startingScreen.loadingLabel.material, 0.3, { opacity: 0 })
             this.startingScreen.area.deactivate()
             TweenLite.to(this.startingScreen.area.floorBorder.material.uniforms.uProgress, 0.3, { value: 0, delay: 0.4 })
 
@@ -236,7 +235,25 @@ export default class
             {
                 this.reveal.go()
             }, 600)
+
         })
+
+        // Org step 2, active starting everything
+        // On interact, reveal
+        // this.startingScreen.area.on('interact', () =>
+        // {
+        //     this.startingScreen.area.deactivate()
+        //     TweenLite.to(this.startingScreen.area.floorBorder.material.uniforms.uProgress, 0.3, { value: 0, delay: 0.4 })
+
+        //     TweenLite.to(this.startingScreen.startLabel.material, 0.3, { opacity: 0, delay: 0.4 })
+
+        //     this.start()
+
+        //     window.setTimeout(() =>
+        //     {
+        //         this.reveal.go()
+        //     }, 600)
+        // })
     }
 
     setSounds()

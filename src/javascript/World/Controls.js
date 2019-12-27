@@ -42,20 +42,28 @@ export default class Controls extends EventEmitter
         this.counter2 = null
         this.counter3 = null
         this.counter4 = null
-        this.touchBefore = 0
+        this.startPos = 0
+        this.endPos = 0
+
+        this.startMovement = (_event) => {
+            // this.endPos = _event.changedTouches[0]
+            this.touch = event.targetTouches[0]
+        　 　this.startPos = {x:touch.pageX,y:touch.pageY,time:new Date}
+        　　 this.isScrolling = 0
+            // this.slider.addEventListener('touchmove', this, false);
+            // this.slider.addEventListener('touchend', this, false);
+            document.addEventListener('touchmove', this.detectWhich, { passive: true })
+            document.addEventListener('touchend', this.stopMovement, { passive: true })
+        }
 
         this.stopMovement = (_event) => {
-            this.touchBefore = _event.changedTouches[0]
+            this.startPos = _event.changedTouches[0]
         }
         
-        this.startMovement = (_event) => {
-            this.touchNow = _event.changedTouches[0]
-        }
-
         this.detectWhich = (_event) => {
             // console.log(_event)
             var output = ''
-            // alert('hey')
+            alert('hey')
             var object = _event
             for (var property in object) {
                 output += property + ': ' + object[property]+'; ';
@@ -64,19 +72,31 @@ export default class Controls extends EventEmitter
             // document.getElementById('infoTeller').innerHTML = output
             // TODO: Make logic better for touch
             if (_event.type == 'touchmove') {
-                output = this.touchNow
-                if (this.touchBefore.screenY - this.touchNow.screenY > 0) {
+                // output = this.endPos
+                console.log('in here alright')
+                if (this.startPos.screenY - this.endPos.screenY > 0) {
                     // slide_up()
                     output = 'going up'
                     this.direction = 'up'
                     // alert('up')
-                } else if(this.touchBefore.screenY - this.touchNow.screenY < 0) {
+                } else if(this.startPos.screenY - this.endPos.screenY < 0) {
                     // slide_down()
                     output = 'going down'
                     this.direction = 'down'
                     // alert('down')
                 }
-                document.getElementById('infoTeller').innerHTML = this.touchNow.screenY
+                //Do not move when there are multiple touch es on the screen or when the page is zoomed
+                if (_event.targetTouches.length > 1 || _event.scale && _event.scale !== 1) return
+            　　 var touch = _event.targetTouches[0]
+            　　 this.endPos = {x: touch.pageX - startPos.x,y:touch.pageY - startPos.y};
+            　　 this.isScrolling = Math.abs(this.endPos.x) < Math.abs(this.endPos.y) ? 1:0; //When isScrolling is 1, it means vertical sliding and 0 is horizontal sliding
+            　　 if (this.isScrolling === 0){
+            　　　  _event.preventDefault(); //Prevent the default behavior of touch events, that is, prevent scrolling
+            // 　　　　this.slider.className = 'cnt';
+            // 　　　　this.slider.style.left = -this.index*600 + this.endPos.x + 'px';
+                }
+                // document.getElementById('infoTeller').innerHTML = this.endPos.screenY
+                document.getElementById('infoTeller').innerHTML = 'in alright'
             } else if (_event.type == 'wheel') {
                 this.direction = this.delta > 0 ? 'up' : 'down'
                 this.delta = _event.deltaY;
@@ -149,9 +169,8 @@ export default class Controls extends EventEmitter
         // Listen to mousewheel event
         document.addEventListener('wheel', this.detectWhich, { passive: true })
         
-        document.addEventListener('touchmove', this.detectWhich, { passive: true })
+        // Listen for mobile touchstart
         document.addEventListener('touchstart', this.startMovement, { passive: true })
-        document.addEventListener('touchend', this.stopMovement, { passive: true })
         
     }
 
