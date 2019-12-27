@@ -42,59 +42,49 @@ export default class Controls extends EventEmitter
         this.counter2 = null
         this.counter3 = null
         this.counter4 = null
-        this.touchBefore = 0
+        this.posStart = 0
+        this.posEnd = 0
 
         this.startMovement = (_event) => {
-            this.touchNow = _event.changedTouches[0]
+            this.posStart = _event.changedTouches[0]
         }
 
         this.stopMovement = (_event) => {
-            this.touchBefore = _event.changedTouches[0]
+            this.posEnd = _event.changedTouches[0]
         }
         
-        this.detectWhich = (_event) => {
-            // console.log(_event)
+        this.detectTouch = (_event) => {
+            // Touch event
             var output = ''
-            // alert('hey')
-            var object = _event
-            for (var property in object) {
-                output += property + ': ' + object[property]+'; ';
+            if (this.posEnd.pageY - this.posStart.pageY > 0) {
+                // alert('up')
+                // slide_up()
+                output = 'going up'
+                this.direction = 'up'
+                // alert('up')
+            } else if(this.posEnd.pageY - this.posStart.pageY < 0) {
+                // alert('down')
+                // slide_down()
+                output = 'going down'
+                this.direction = 'down'
+                // alert('down')
             }
-            // console.log(output)
-            // document.getElementById('infoTeller').innerHTML = output
-            // TODO: Make logic better for touch
-            if (_event.type == 'touchmove') {
-                output = this.touchNow
-                if (this.touchBefore.screenY - this.touchNow.screenY > 0) {
-                    // slide_up()
-                    output = 'going up'
-                    this.direction = 'up'
-                    // alert('up')
-                } else if(this.touchBefore.screenY - this.touchNow.screenY < 0) {
-                    // slide_down()
-                    output = 'going down'
-                    this.direction = 'down'
-                    // alert('down')
-                }
-                document.getElementById('infoTeller').innerHTML = this.touchNow.screenY
-            } else if (_event.type == 'wheel') {
-                this.direction = this.delta > 0 ? 'up' : 'down'
-                this.delta = _event.deltaY;
-            }
-            
+            // document.getElementById('infoTeller').innerHTML = this.posStart.pageY
+            document.getElementById('infoTeller').innerHTML = output
             this.counter += 1
             if (this.marker) {
                 this.wheelStart()
             }
-            // if (_event.deltaY < 0) {
-            //     console.log('scrolling up')
-            //     this.actions.up = false
-            //     this.actions.down = true
-            // } else if (_event.deltaY > 0) {
-            //     this.actions.up = true
-            //     this.actions.down = false
-            //     console.log('scrolling down')
-            // }
+        }
+
+        this.detectMouse = (_event) => {
+            // Mouse wheel
+            this.direction = this.delta > 0 ? 'up' : 'down'
+            this.delta = _event.deltaY;
+            this.counter += 1
+            if (this.marker) {
+                this.wheelStart()
+            }
         }
 
         this.wheelStart = () => {
@@ -147,9 +137,9 @@ export default class Controls extends EventEmitter
         // }
 
         // Listen to mousewheel event
-        document.addEventListener('wheel', this.detectWhich, { passive: true })
+        document.addEventListener('wheel', this.detectMouse, { passive: true })
         
-        document.addEventListener('touchmove', this.detectWhich, { passive: true })
+        document.addEventListener('touchmove', this.detectTouch, { passive: true })
         document.addEventListener('touchstart', this.startMovement, { passive: true })
         document.addEventListener('touchend', this.stopMovement, { passive: true })
         
