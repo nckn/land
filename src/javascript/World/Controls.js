@@ -119,7 +119,7 @@ export default class Controls extends EventEmitter
         // Listen to mousewheel event
         document.addEventListener('wheel', this.detectWhich, { passive: true })
         
-        document.addEventListener('touch', this.detectWhich, { passive: true })
+        document.addEventListener('touchstart', this.detectWhich, { passive: true })
         
     }
 
