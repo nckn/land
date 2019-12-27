@@ -149,7 +149,8 @@ import informationContactGithubLabelSource from '../models/information/static/co
 import informationContactLinkedinLabelSource from '../models/information/static/contactLinkedinLabel.png'
 import informationContactMailLabelSource from '../models/information/static/contactMailLabel.png'
 
-import informationActivitiesSource from '../models/information/static/activities.png'
+// import informationActivitiesSource from '../models/information/static/activities.png'
+import informationActivitiesSource from '../models/information/static/land-title-1.png'
 
 // Playground
 import playgroundStaticFloorShadowSource from '../models/playground/static/floorShadow.png'
